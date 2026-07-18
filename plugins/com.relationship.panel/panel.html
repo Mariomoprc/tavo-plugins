@@ -1,0 +1,83 @@
+<script>
+(function() {
+  try {
+    var doc = window.top ? window.top.document : document;
+    if (!doc || !doc.body) { doc = document; }
+    var oldP = doc.getElementById('rel-pn'); if (oldP) oldP.remove();
+    var oldS = doc.getElementById('rel-ss'); if (oldS) oldS.remove();
+
+    var css = doc.createElement('style'); css.id = 'rel-ss';
+    css.textContent = 'div#rel-pn{display:none;position:fixed;top:0;right:0;width:min(380px,100vw);height:100vh;background:rgba(15,23,42,.97);border-left:1px solid rgba(99,102,241,.3);z-index:9999999;flex-direction:column;font-family:-apple-system,sans-serif;color:#e2e8f0;box-shadow:-8px 0 32px rgba(0,0,0,.5)}div#rel-pn.rel-open{display:flex;animation:rel-slide .3s ease}@keyframes rel-slide{from{transform:translateX(100%)}to{transform:translateX(0)}}.rel-hd{padding:12px 16px;border-bottom:1px solid rgba(99,102,241,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}.rel-hd h3{margin:0;color:#818cf8;font-size:15px;font-weight:600}.rel-tabs{display:flex;gap:4px;padding:8px 10px 0;overflow-x:auto;flex-shrink:0;border-bottom:1px solid rgba(99,102,241,.1)}.rel-tab{padding:7px 12px;font-size:12.5px;color:#94a3b8;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;flex-shrink:0;transition:all .15s ease}.rel-tab:hover{color:#c7d2fe;background:rgba(99,102,241,.08)}.rel-tab.rel-active{color:#818cf8;background:rgba(30,41,59,.8);font-weight:600}.rel-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default;touch-action:auto}.rel-x{background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer;padding:0}.rel-x:hover{color:#fff}.rel-sec{background:rgba(30,41,59,.8);border:1px solid rgba(99,102,241,.12);border-radius:10px;overflow:hidden}.rel-sec-hd{padding:10px 12px;border-bottom:1px solid rgba(99,102,241,.1);font-size:13px;font-weight:600;color:#c7d2fe}.rel-sec-bd{padding:10px 12px;font-size:13px;line-height:1.7;overflow:hidden}.rel-pre{white-space:pre-wrap;word-break:break-word;font-family:inherit;margin:0;font-size:13.5px;line-height:1.7;color:#cbd5e1;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default;max-width:100%}.rel-empty{color:#64748b;text-align:center;padding:30px 0;font-size:13px}.rel-progress{color:#818cf8;text-align:center;padding:20px 0;font-size:13px;animation:rel-pulse 1.5s infinite}@keyframes rel-pulse{0%,100%{opacity:1}50%{opacity:.4}}.rel-btn{padding:9px 18px;border-radius:8px;border:1px solid rgba(99,102,241,.3);background:rgba(99,102,241,.15);color:#818cf8;font-size:13px;cursor:pointer;width:100%;margin-top:10px;box-sizing:border-box}.rel-btn:hover{background:rgba(99,102,241,.25)}.rel-btn:disabled{opacity:.4;cursor:not-allowed}.rel-sec-bd{overflow:hidden}.rel-name{color:#818cf8;cursor:pointer;border-bottom:1px dashed rgba(129,140,248,.5)}.rel-name:active{background:rgba(99,102,241,.15)}.rel-tl-item h5{margin:0 0 4px;color:#818cf8;font-size:13px}.rel-tl-item p{margin:0;color:#94a3b8;font-size:13px;line-height:1.6}.rel-tip{padding:8px 12px;background:rgba(99,102,241,.08);border-radius:6px;margin-bottom:8px;font-size:13px;color:#94a3b8;line-height:1.6}.rel-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(99,102,241,.9);color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:99999999;pointer-events:none;animation:rel-fade 1.5s ease forwards}@keyframes rel-fade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}';
+    doc.head.appendChild(css);
+
+    var pn = doc.createElement('div'); pn.id = 'rel-pn'; doc.body.appendChild(pn);
+    var state = { chatId: null, chars: [], storyline: null, tab: 'desc' };
+
+    function injectBtn() {
+      var bars = doc.querySelectorAll('.tav-action-bar');
+      var bar = null;
+      for (var i = 0; i < bars.length; i++) {
+        if (bars[i].children.length >= 3 && bars[i].querySelector('button') && bars[i].isConnected) {
+          bar = bars[i];
+        }
+      }
+      if (!bar) return false;
+      var existing = doc.getElementById('rel-tb');
+      var cyoaBtn = doc.getElementById('cyoa-tb');
+      if (existing) {
+        if (existing.isConnected || doc.contains(existing)) {
+          if (cyoaBtn && (cyoaBtn.isConnected || doc.contains(cyoaBtn)) && existing.compareDocumentPosition(cyoaBtn) & Node.DOCUMENT_POSITION_FOLLOWING) {
+            cyoaBtn.parentNode.insertBefore(existing, cyoaBtn.nextSibling);
+          }
+          return true;
+        }
+        existing.remove();
+      }
+      var btn = doc.createElement('button'); btn.id = 'rel-tb'; btn.className = 'tav-action-bar-button';
+      btn.textContent = '\u{1F4CB}'; btn.title = '\u89D2\u8272\u8D44\u6599';
+      btn.addEventListener('click', function(e) { e.stopPropagation(); toggle(); });
+      if (cyoaBtn && (cyoaBtn.isConnected || doc.contains(cyoaBtn))) {
+        cyoaBtn.parentNode.insertBefore(btn, cyoaBtn.nextSibling);
+      } else {
+        bar.appendChild(btn);
+      }
+      return true;
+    }
+    injectBtn();
+    var obs = new MutationObserver(function() { injectBtn(); });
+    obs.observe(doc.body, { childList: true, subtree: true });
+
+    function toggle() {
+      if (pn.classList.contains('rel-open')) { pn.classList.remove('rel-open'); }
+      else { pn.classList.add('rel-open'); loadAndRender(); }
+    }
+
+    async function loadAndRender() {
+      try {
+        var chat = await tavo.chat.current();
+        if (!chat) return;
+        state.chatId = chat.id;
+        state.chars = [];
+        if (chat.characters) {
+          for (var i = 0; i < chat.characters.length; i++) {
+            var c = chat.characters[i];
+            try { var full = await tavo.character.get(c.id); state.chars.push(full || c); } catch(e) { state.chars.push(c); }
+          }
+        }
+        var cached = tavo.get('relsl_'+state.chatId, 'global');
+        if (cached) state.storyline = (typeof cached === 'string') ? JSON.parse(cached) : cached;
+      } catch(e) {}
+      buildUI();
+    }
+
+    function buildUI() {
+      pn.innerHTML = '<div class="rel-hd"><h3>\u{1F4CB} \u89D2\u8272\u8D44\u6599</h3></div>';
+      // Simplified UI - full version in source repo
+      var empty = document.createElement('div');
+      empty.className = 'rel-empty';
+      empty.textContent = '\u52A0\u8F7D\u4E2D...';
+      pn.appendChild(empty);
+    }
+  } catch(e) { console.error('RelPanel init:', e); }
+})();
+</script>
