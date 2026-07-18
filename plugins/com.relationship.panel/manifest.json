@@ -1,15 +1,16 @@
 {
   "id": "com.relationship.panel",
   "name": "角色资料面板",
-  "version": "1.5.1",
+  "version": "1.5.4",
+  "description": "角色卡资料与故事线分析面板。5个标签页查看角色设定、性格、场景、备注和故事线。",
   "specVersion": 1,
-  "description": "角色卡资料与故事线分析面板。点击工具栏按钮展开，5 个标签页查看角色设定、性格、场景、备注和故事线。",
-  "features": ["htmlFragments"],
-  "htmlFragments": [
-    {
-      "id": "rel-panel",
-      "src": "panel.html",
-      "mount": "/chat/body/end"
-    }
-  ]
+  "contributes": {
+    "htmlFragments": [
+      {
+        "id": "rel-panel",
+        "src": "panel.html",
+        "mount": "/chat/body/end"
+      }
+    ]
+  }
 }
