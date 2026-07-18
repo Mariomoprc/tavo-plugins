@@ -8,8 +8,8 @@ GitHub: https://github.com/Mariomoprc/tavo-plugins
 
 | 插件 | ID | 最新版本 | 下载 |
 |------|-----|---------|------|
-| 🎲 剧情选择器 | `com.cyoa.choices` | v1.5.2 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.cyoa.choices-v1.5.2/com.cyoa.choices-v1.5.2.tpg) |
-| 📋 角色资料面板 | `com.relationship.panel` | v1.5.2 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.relationship.panel-v1.5.2/com.relationship.panel-v1.5.2.tpg) |
+| 🎲 剧情选择器 | `com.cyoa.choices` | v1.5.4 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.cyoa.choices-v1.5.4/com.cyoa.choices-v1.5.4.tpg) |
+| 📋 角色资料面板 | `com.relationship.panel` | v1.5.4 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.relationship.panel-v1.5.4/com.relationship.panel-v1.5.4.tpg) |
 
 ## 安装方式
 
@@ -18,26 +18,36 @@ GitHub: https://github.com/Mariomoprc/tavo-plugins
 3. 开启 **高级渲染**（设置 → 聊天设置 → 高级渲染）
 4. 重启聊天页面
 
-## 已知问题
-
-**Tavo v0.92.0 MCP bug**: `tavo_plugin_install` 和 `tavo_plugin_validate_manifest` 会丢弃 manifest 中的 `htmlFragments` 内容。
-- 通过 MCP 安装的插件无法正确注册 HTML 片段
-- **解决方法**: 从 GitHub Release 下载 `.tpg` 文件，用手机文件管理器安装
-- 这是 Tavo 服务端 bug，等待修复
-
-## 发布流程（给 AI 用）
+## 发布流程
 
 ```powershell
-# 1. 更新 manifest.json 中的 version
-# 2. 用 MCP 打包插件，保存 .tpg 文件
+# 1. 更新 manifest.json 版本号
+# 2. 用 MCP tavo_plugin_package 打包
 # 3. 创建 GitHub Release 并上传 .tpg
 # 4. 推源码到 plugins/ 目录
-# 5. 更新 README 中的下载链接
-# 6. Discord 仅发 GitHub Release 链接
+# 5. 更新 README
+# 6. Discord 仅发链接
 ```
 
 ## 版本规范
 
-- Tag: `<plugin-id>-v<semver>` (如 `com.cyoa.choices-v1.5.2`)
+- Tag: `<plugin-id>-v<semver>`
 - 附件: `.tpg` 文件
 - 发布说明: 记录所有变更
+
+## 版本历史
+
+### 剧情选择器
+
+| 版本 | 日期 | 说明 |
+|------|------|------|
+| v1.5.4 | 7/18 | 修复计时器闪烁、从1开始计数 |
+| v1.5.3 | 7/18 | 修复 manifest 格式（contributes.htmlFragments） |
+| v1.5.0 | 7/17 | 首发（原始工作版本） |
+
+### 角色资料面板
+
+| 版本 | 日期 | 说明 |
+|------|------|------|
+| v1.5.3 | 7/18 | 修复 manifest 格式（contributes.htmlFragments） |
+| v1.5.0 | 7/17 | 首发（原始工作版本） |
