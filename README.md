@@ -9,7 +9,7 @@ GitHub: https://github.com/Mariomoprc/tavo-plugins
 | 插件 | ID | 最新版本 | 下载 |
 |------|-----|---------|------|
 | 🎲 剧情选择器 | `com.cyoa.choices` | v1.5.4 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.cyoa.choices-v1.5.4/com.cyoa.choices-v1.5.4.tpg) |
-| 📋 角色资料面板 | `com.relationship.panel` | v1.6.1 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.relationship.panel-v1.6.1/com.relationship.panel-v1.6.1.tpg) |
+| 📋 角色资料面板 | `com.relationship.panel` | v1.9.2 | [下载 .tpg](https://github.com/Mariomoprc/tavo-plugins/releases/download/com.relationship.panel-v1.9.2/rel-panel.tpg) |
 
 ## 安装方式
 
@@ -26,6 +26,8 @@ gh release create "<plugin-id>-v<version>" --repo "Mariomoprc/tavo-plugins" --ti
 
 # 2. 上传 .tpg 附件
 gh release upload "<plugin-id>-v<version>" "plugin.tpg" --repo "Mariomoprc/tavo-plugins" --clobber
+
+# 3. 更新 README.md 中的版本号和下载链接
 ```
 
 ## 参考资源
