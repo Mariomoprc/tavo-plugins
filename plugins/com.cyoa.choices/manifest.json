@@ -1,8 +1,8 @@
 {
   "id": "com.cyoa.choices",
   "name": "剧情选择器",
-  "version": "1.5.4",
-  "description": "为对话添加互动小说式行动选项。点击工具栏骰子按钮，AI 根据当前剧情生成 5 个下一步行动建议。",
+  "version": "1.6.0",
+  "description": "为对话添加互动小说式行动选项。",
   "specVersion": 1,
   "contributes": {
     "htmlFragments": [
