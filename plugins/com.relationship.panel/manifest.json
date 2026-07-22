@@ -1,1 +1,18 @@
-{"id":"com.relationship.panel","name":"角色资料面板","version":"4.1.0","description":"角色卡资料与状态分析","specVersion":1,"permissions":["input","network","message","generate","variable"],"contributes":{"htmlFragments":[{"id":"rel-panel-v2","src":"panel2.html","mount":"/chat/body/end"}]}}
+{
+  "id": "com.relationship.panel",
+  "name": "角色资料面板",
+  "version": "4.2.9",
+  "description": "角色卡资料与状态分析",
+  "specVersion": 1,
+  "minAppVersion": "0.91.0",
+  "permissions": ["input", "network", "message", "generate", "variable"],
+  "contributes": {
+    "htmlFragments": [
+      {
+        "id": "rel-panel-v2",
+        "src": "panel2.html",
+        "mount": "/chat/body/end"
+      }
+    ]
+  }
+}
