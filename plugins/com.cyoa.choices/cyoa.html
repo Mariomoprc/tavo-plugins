@@ -91,7 +91,7 @@
       var existing = doc.getElementById('cyoa-tb');
       if (existing) {
         if (existing.isConnected && doc.contains(existing)) return true;
-        if (existing.parentNode && existing.parentNode !== bar) bar.appendChild(existing);
+        if (existing.parentNode !== bar) bar.appendChild(existing);
         return true;
       }
       var btn = doc.createElement('button');
