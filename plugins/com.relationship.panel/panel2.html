@@ -1,4 +1,4 @@
-﻿<script>
+<script>
 (function() {
   try {
     var doc = window.top ? window.top.document : document;
@@ -7,41 +7,26 @@
     var oldS = doc.getElementById('rel-ss'); if (oldS) oldS.remove();
 
     var css = doc.createElement('style'); css.id = 'rel-ss';
-    css.textContent = 'div#rel-pn{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(360px,calc(100vw - 40px));height:min(500px,calc(100vh - 120px));background:#1a1a1a;border:1px solid #333;border-radius:4px;z-index:9999999;flex-direction:column;font-family:"Courier New",monospace;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,.5)}div#rel-pn.rel-open{display:flex}.rel-hd{padding:10px 12px;border-bottom:1px solid #333;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}.rel-hd h3{margin:0;color:#fff;font-size:13px;font-weight:bold}.rel-tabs{display:flex;gap:4px;padding:8px 10px 0;overflow-x:auto;flex-shrink:0;border-bottom:1px solid #333;position:relative;touch-action:pan-x;scrollbar-width:none;-ms-overflow-style:none}.rel-tabs::-webkit-scrollbar{display:none}.rel-tab{padding:7px 12px;font-size:12px;color:#888;cursor:pointer;border-radius:2px 2px 0 0;white-space:nowrap;flex-shrink:0;transition:all .15s ease}.rel-tab:hover{color:#fff;background:#2a2a2a}.rel-tab.rel-active{color:#fff;background:#2a2a2a;font-weight:bold}.rel-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default;touch-action:auto}.rel-x{background:none;border:none;color:#888;font-size:16px;cursor:pointer;padding:0}.rel-x:hover{color:#fff}.rel-sec{background:#1a1a1a;border:1px solid #333;border-radius:4px;overflow:hidden;margin-bottom:8px}.rel-sec-hd{padding:8px 10px;border-bottom:1px solid #333;font-size:12px;font-weight:bold;color:#fff}.rel-sec-bd{padding:8px 10px;font-size:13px;line-height:1.7;overflow:hidden}.rel-pre{white-space:pre-wrap;word-break:break-word;font-family:inherit;margin:0;font-size:13px;line-height:1.7;color:#e0e0e0;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default;max-width:100%}.rel-empty{color:#888;text-align:center;padding:20px 0;font-size:12px}.rel-progress{color:#fff;text-align:center;padding}.rel-stat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(99,102,241,.08);font-size:13px;color:#e0e0e0}.rel-stat:last-child{border-bottom:none}.rel-stat-lbl{color:#94a3b8}.rel-stat-val{color:#e0e0e0;font-weight:600}.rel-tog{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;margin-top:10px;background:#1a1a1a;border:1px solid #333;border-radius:10px;font-size:13px}.rel-tog-lbl{color:#94a3b8}.rel-tog-btn{padding:4px 12px;border-radius:12px;border:1px solid #333;background:transparent;color:#fff;font-size:12px;cursor:pointer}.rel-tog-btn:hover{background:#2a2a2a}.rel-tog-btn.on{background:#818cf8;color:#fff;border-color:#fff}.rel-info{font-size:11px;color:#888;text-align:right;padding:4px 0}.rel-sbox{width:100%;padding:8px 10px;background:#1a1a1a;border:1px solid rgba(99,102,241,.2);border-radius:8px;color:#e0e0e0;font-size:13px;outline:none;box-sizing:border-box;margin-bottom:8px}.rel-sbox:focus{border-color:#fff}.rel-sres{padding:8px 10px;border-bottom:1px solid rgba(99,102,241,.08);cursor:pointer}.rel-sres:hover{background:#2a2a2a;border-radius:6px}.rel-sres-role{font-size:11px;color:#888}.rel-sres-role.u{color:#fff}.rel-sres-role.c{color:#aaa}.rel-sres-txt{font-size:12.5px;color:#e0e0e0;line-height:1.5;margin-top:2px}.rel-sres em{color:#fff;font-style:normal;background:rgba(251,191,36,.15);padding:0 2px;border-radius:2px}:20px 0;font-size:13px;animation:rel-pulse 1.5s infinite}@keyframes rel-pulse{0%,100%{opacity:1}50%{opacity:.4}}.rel-btn{padding:9px 18px;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff;font-size:13px;cursor:pointer;width:100%;margin-top:10px;box-sizing:border-box}.rel-btn:hover{background:#333}.rel-btn:disabled{opacity:.4;cursor:not-allowed}.rel-tl-item{padding:10px 0;border-bottom:1px solid rgba(99,102,241,.08)}.rel-tl-item:last-child{border-bottom:none}.rel-tl-item h5{margin:0 0 4px;color:#fff;font-size:13px}.rel-tl-item p{margin:0;color:#94a3b8;font-size:13px;line-height:1.6;overflow:hidden;word-break:break-word}.rel-tip{padding:8px 12px;background:#2a2a2a;border-radius:6px;margin-bottom:8px;font-size:13px;color:#94a3b8;line-height:1.6;overflow-wrap:break-word;word-break:break-word;overflow:hidden}.rel-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.rel-chip{padding:4px 10px;background:#2a2a2a;border:1px solid #444;border-radius:12px;font-size:12px;color:#fff;cursor:pointer;white-space:nowrap}.rel-chip:active{background:#2a2a2a}.rel-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:99999999;pointer-events:none;animation:rel-fade 1.5s ease forwards}@keyframes rel-fade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}.rel-name{color:#fff;cursor:pointer;border-bottom:1px dashed rgba(129,140,248,.5);padding:0 1px}.rel-name:active{background:#2a2a2a}';
+    css.textContent = 'div#rel-pn{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(360px,calc(100vw - 40px));height:min(500px,calc(100vh - 120px));background:#1a1a1a;border:1px solid #333;border-radius:4px;z-index:9999999;flex-direction:column;font-family:"Courier New",monospace;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,.5)}div#rel-pn.rel-open{display:flex}.rel-hd{padding:10px 12px;border-bottom:1px solid #333;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}.rel-hd h3{margin:0;color:#fff;font-size:13px;font-weight:bold}.rel-tabs{display:flex;gap:4px;padding:8px 10px 0;overflow-x:auto;flex-shrink:0;border-bottom:1px solid #333;position:relative;touch-action:pan-x;scrollbar-width:none;-ms-overflow-style:none}.rel-tabs::-webkit-scrollbar{display:none}.rel-tab{padding:7px 12px;font-size:12px;color:#888;cursor:pointer;border-radius:2px 2px 0 0;white-space:nowrap;flex-shrink:0;transition:all .15s ease}.rel-tab:hover{color:#fff;background:#2a2a2a}.rel-tab.rel-active{color:#fff;background:#2a2a2a;font-weight:bold}.rel-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default;touch-action:auto}.rel-x{background:none;border:none;color:#888;font-size:16px;cursor:pointer;padding:0}.rel-x:hover{color:#fff}.rel-sec{background:#1a1a1a;border:1px solid #333;border-radius:4px;overflow:hidden;margin-bottom:8px}.rel-sec-hd{padding:8px 10px;border-bottom:1px solid #333;font-size:12px;font-weight:bold;color:#fff}.rel-sec-bd{padding:8px 10px;font-size:13px;line-height:1.7;overflow:hidden}.rel-pre{white-space:pre-wrap;word-break:break-word;font-family:inherit;margin:0;font-size:13px;line-height:1.7;color:#e0e0e0;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default;max-width:100%}.rel-empty{color:#888;text-align:center;padding:20px 0;font-size:12px}.rel-progress{color:#fff;text-align:center;padding}.rel-stat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(99,102,241,.08);font-size:13px;color:#e0e0e0}.rel-stat:last-child{border-bottom:none}.rel-stat-lbl{color:#94a3b8}.rel-stat-val{color:#e0e0e0;font-weight:600}.rel-tog{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;margin-top:10px;background:#1a1a1a;border:1px solid #333;border-radius:10px;font-size:13px}.rel-tog-lbl{color:#94a3b8}.rel-tog-btn{padding:4px 12px;border-radius:12px;border:1px solid #333;background:transparent;color:#fff;font-size:12px;cursor:pointer}.rel-tog-btn:hover{background:#2a2a2a}.rel-tog-btn.on{background:#818cf8;color:#fff;border-color:#fff}.rel-info{font-size:11px;color:#888;text-align:right;padding:4px 0}.rel-sbox{width:100%;padding:8px 10px;background:#1a1a1a;border:1px solid rgba(99,102,241,.2);border-radius:8px;color:#e0e0e0;font-size:13px;outline:none;box-sizing:border-box;margin-bottom:8px}.rel-sbox:focus{border-color:#fff}.rel-sres{padding:8px 10px;border-bottom:1px solid rgba(99,102,241,.08);cursor:pointer}.rel-sres:hover{background:#2a2a2a;border-radius:6px}.rel-sres-role{font-size:11px;color:#888}.rel-sres-role.u{color:#fff}.rel-sres-role.c{color:#aaa}.rel-sres-txt{font-size:12.5px;color:#e0e0e0;line-height:1.5;margin-top:2px}.rel-sres em{color:#fff;font-style:normal;background:rgba(251,191,36,.15);padding:0 2px;border-radius:2px}:20px 0;font-size:13px;animation:rel-pulse 1.5s infinite}@keyframes rel-pulse{0%,100%{opacity:1}50%{opacity:.4}}.rel-btn{padding:9px 18px;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff;font-size:13px;cursor:pointer;width:100%;margin-top:10px;box-sizing:border-box}.rel-btn:hover{background:#333}.rel-btn:disabled{opacity:.4;cursor:not-allowed}.rel-tl-item{padding:10px 0;border-bottom:1px solid rgba(99,102,241,.08)}.rel-tl-item:last-child{border-bottom:none}.rel-tl-item h5{margin:0 0 4px;color:#fff;font-size:13px}.rel-tl-item p{margin:0;color:#94a3b8;font-size:13px;line-height:1.6;overflow:hidden;word-break:break-word}.rel-tip{padding:8px 12px;background:#2a2a2a;border-radius:6px;margin-bottom:8px;font-size:13px;color:#94a3b8;line-height:1.6;overflow-wrap:break-word;word-break:break-word;overflow:hidden}.rel-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.rel-chip{padding:4px 10px;background:#2a2a2a;border:1px solid #444;border-radius:12px;font-size:12px;color:#fff;cursor:pointer;white-space:nowrap}.rel-chip:active{background:#2a2a2a}.rel-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:99999999;pointer-events:none;animation:rel-fade 1.5s ease forwards}@keyframes rel-fade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}.rel-name{color:#fff;cursor:pointer;border-bottom:1px dashed rgba(129,140,248,.5);padding:0 1px}.rel-name:active{background:#2a2a2a}#cyoa-tb{order:1}#rel-tb{order:2}';
     doc.head.appendChild(css);
 
     var pn = doc.createElement('div'); pn.id = 'rel-pn'; doc.body.appendChild(pn);
     var state = { chatId: null, chars: [], tab: 'status', _pendingGen: {} };
 
     function injectBtn() {
-      var existing = doc.getElementById('rel-tb');
-      if (existing && existing.parentNode) {
-        var cyoaBtn = doc.getElementById('cyoa-tb');
-        if (cyoaBtn && cyoaBtn.parentNode === existing.parentNode) {
-          var siblings = existing.parentNode.children;
-          var idxE = -1, idxC = -1;
-          for (var i = 0; i < siblings.length; i++) {
-            if (siblings[i] === existing) idxE = i;
-            if (siblings[i] === cyoaBtn) idxC = i;
-          }
-          if (idxE < idxC) {
-            cyoaBtn.parentNode.insertBefore(existing, siblings[idxC + 1] || null);
-          }
-        }
-        return true;
-      }
       var bars = doc.querySelectorAll('.tav-action-bar'); var bar = null;
       for (var i = 0; i < bars.length; i++) { if (bars[i].children.length >= 2) bar = bars[i]; }
       if (!bar) return false;
-      var cyoaBtn = doc.getElementById('cyoa-tb');
+      var existing = doc.getElementById('rel-tb');
+      if (existing) {
+        if (existing.isConnected && doc.contains(existing)) return true;
+        if (existing.parentNode && existing.parentNode !== bar) bar.appendChild(existing);
+        return true;
+      }
       var btn = doc.createElement('button'); btn.id = 'rel-tb'; btn.className = 'tav-action-bar-button';
       btn.textContent = '\ud83d\udcd6'; btn.title = '\u89d2\u8272\u8d44\u6599';
       btn.addEventListener('click', function(e) { e.stopPropagation(); toggle(); });
-      if (cyoaBtn) {
-        cyoaBtn.parentNode.insertBefore(btn, cyoaBtn.nextSibling);
-      } else {
-        bar.appendChild(btn);
-      }
+      bar.appendChild(btn);
       return true;
     }
     injectBtn();
@@ -245,7 +230,7 @@
         var clean = stripTemplate(ch.description);
         if (!clean) continue;
         var s = doc.createElement('div'); s.className = 'rel-sec';
-        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '📝 ' + ch.name;
+        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '\ud83d\udcdd ' + ch.name;
         h.style.cursor = 'pointer'; h.title = '\u70b9\u51fb\u590d\u5236\u540d\u5b57';
         (function(nm){h.addEventListener('click',function(e){e.stopPropagation();copyName(nm);});})(ch.name);
         s.appendChild(h);
@@ -266,7 +251,7 @@
         var clean = stripTemplate(ch.personality);
         if (!clean) continue;
         var s = doc.createElement('div'); s.className = 'rel-sec';
-        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '🧠 ' + ch.name;
+        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '\ud83e\udde0 ' + ch.name;
         h.style.cursor = 'pointer'; h.title = '\u70b9\u51fb\u590d\u5236\u540d\u5b57';
         (function(nm){h.addEventListener('click',function(e){e.stopPropagation();copyName(nm);});})(ch.name);
         s.appendChild(h);
@@ -287,7 +272,7 @@
         var clean = stripTemplate(ch.scenario);
         if (!clean) continue;
         var s = doc.createElement('div'); s.className = 'rel-sec';
-        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '🎭 ' + ch.name;
+        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '\ud83c\udfad ' + ch.name;
         h.style.cursor = 'pointer'; h.title = '\u70b9\u51fb\u590d\u5236\u540d\u5b57';
         (function(nm){h.addEventListener('click',function(e){e.stopPropagation();copyName(nm);});})(ch.name);
         s.appendChild(h);
@@ -308,7 +293,7 @@
         var clean = stripTemplate(ch.creator_notes);
         if (!clean) continue;
         var s = doc.createElement('div'); s.className = 'rel-sec';
-        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '📋 ' + ch.name;
+        var h = doc.createElement('div'); h.className = 'rel-sec-hd'; h.textContent = '\ud83d\udccb ' + ch.name;
         h.style.cursor = 'pointer'; h.title = '\u70b9\u51fb\u590d\u5236\u540d\u5b57';
         (function(nm){h.addEventListener('click',function(e){e.stopPropagation();copyName(nm);});})(ch.name);
         s.appendChild(h);
@@ -326,11 +311,11 @@
       var text = '';
       for (var ci = 0; ci < state.chars.length; ci++) {
         var ch = state.chars[ci];
-        if (ch.description) { var c = formatText(ch.description); if (c) text += '📝 ' + ch.name + '\n' + c + '\n\n'; }
-        if (ch.personality) { var c = formatText(ch.personality); if (c) text += '🧠 ' + ch.name + '\n' + c + '\n\n'; }
-        if (ch.scenario) { var c = formatText(ch.scenario); if (c) text += '🎭 ' + ch.name + '\n' + c + '\n\n'; }
-        if (ch.creator_notes) { var c = formatText(ch.creator_notes); if (c) text += '📋 ' + ch.name + '\n' + c + '\n\n'; }
-        if (ch.first_mes) { var c = formatText(ch.first_mes.substring(0, 500)); if (c) text += '🎬 ' + ch.name + ' \u5f00\u573a\u767d\n' + c + '\n\n'; }
+        if (ch.description) { var c = formatText(ch.description); if (c) text += '\ud83d\udcdd ' + ch.name + '\n' + c + '\n\n'; }
+        if (ch.personality) { var c = formatText(ch.personality); if (c) text += '\ud83e\udde0 ' + ch.name + '\n' + c + '\n\n'; }
+        if (ch.scenario) { var c = formatText(ch.scenario); if (c) text += '\ud83c\udfad ' + ch.name + '\n' + c + '\n\n'; }
+        if (ch.creator_notes) { var c = formatText(ch.creator_notes); if (c) text += '\ud83d\udccb ' + ch.name + '\n' + c + '\n\n'; }
+        if (ch.first_mes) { var c = formatText(ch.first_mes.substring(0, 500)); if (c) text += '\ud83c\udfac ' + ch.name + ' \u5f00\u573a\u767d\n' + c + '\n\n'; }
       }
       if (!text) { body.innerHTML = '<div class="rel-empty">\u6682\u65e0\u89d2\u8272\u5361\u4fe1\u606f</div>'; return; }
       var names = state.chars[0] ? getNames(state.chars[0]) : [];
