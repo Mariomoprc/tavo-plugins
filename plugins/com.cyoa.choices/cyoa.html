@@ -128,10 +128,8 @@
 
     var injectTimer = null;
     var observer = new MutationObserver(function() {
-      if (!doc.getElementById('cyoa-tb')) {
-        if (injectTimer) clearTimeout(injectTimer);
-        injectTimer = setTimeout(injectBtn, 200);
-      }
+      if (injectTimer) clearTimeout(injectTimer);
+      injectTimer = setTimeout(injectBtn, 200);
     });
     observer.observe(doc.body, { childList: true, subtree: true });
 
