@@ -11,7 +11,7 @@
 
     var s = doc.createElement('style');
     s.id = 'cyoa-ss';
-    s.textContent = 'div#cyoa-pn{display:none;position:fixed;width:340px;max-height:500px;background:rgba(10,10,10,0.78);-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.06);border-radius:6px;z-index:9999999;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5);flex-direction:column;font-family:"Courier New",monospace;color:#fff}div#cyoa-pn select{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:2px;color:#fff;font-size:13px;padding:4px 8px;font-family:"Courier New",monospace;outline:none}div#cyoa-pn select option{background:rgba(10,10,10,0.95);color:#fff}div#cyoa-pn .opt-btn{width:100%;text-align:left;background:transparent;border:none;color:#e0e0e0;font-size:12px;padding:8px 12px;cursor:pointer;font-family:"Courier New",monospace;position:relative;border-bottom:1px solid rgba(255,255,255,0.05)}div#cyoa-pn .opt-btn:last-of-type{border-bottom:none}#cyoa-tb{order:1}#rel-tb{order:2}';
+    s.textContent = 'div#cyoa-pn{display:none;position:fixed;width:340px;max-height:500px;background:rgba(10,10,10,0.78);-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.06);border-radius:6px;z-index:9999999;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5);flex-direction:column;font-family:"Courier New",monospace;color:#fff}div#cyoa-pn select{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:2px;color:#fff;font-size:13px;padding:4px 8px;font-family:"Courier New",monospace;outline:none}div#cyoa-pn select option{background:rgba(10,10,10,0.95);color:#fff}div#cyoa-pn .opt-btn{width:100%;text-align:left;background:transparent;border:none;color:#e0e0e0;font-size:13px;padding:8px 12px;cursor:pointer;font-family:"Courier New",monospace;position:relative;border-bottom:1px solid rgba(255,255,255,0.05)}div#cyoa-pn .opt-btn:last-of-type{border-bottom:none}#cyoa-tb{order:1}#rel-tb{order:2}';
     doc.head.appendChild(s);
 
     var pn = doc.createElement('div');
@@ -105,7 +105,7 @@
         var elapsed = genStartTime ? Math.floor((Date.now() - genStartTime) / 1000) : 0;
         if (busy) {
           var bd = doc.getElementById('cyoa-bd');
-          if (bd) bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">> \u601d\u8003\u4e2d <span id="cyoa-timer">' + Math.max(1, elapsed) + '</span>s</div>';
+          if (bd) bd.innerHTML = '<div style="color:#888;font-size:13px;text-align:center">> \u601d\u8003\u4e2d <span id="cyoa-timer">' + Math.max(1, elapsed) + '</span>s</div>';
           return;
         }
         var stale = false;
@@ -147,7 +147,7 @@
       hd.style.cssText = 'padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px';
       var ttl = doc.createElement('span');
       ttl.textContent = '> \u9009\u62e9\u884c\u52a8';
-      ttl.style.cssText = 'color:#fff;font-size:14px;font-weight:bold;white-space:nowrap';
+      ttl.style.cssText = 'color:#fff;font-size:13px;font-weight:bold;white-space:nowrap';
       hd.appendChild(ttl);
 
       var styleSelect = doc.createElement('select');
@@ -176,7 +176,7 @@
       var rfBtn = doc.createElement('button');
       rfBtn.id = 'cyoa-rf';
       rfBtn.textContent = '\u21bb';
-      rfBtn.style.cssText = 'background:none;border:none;color:#888;font-size:14px;cursor:pointer;padding:0 0 0 8px;margin-left:auto;font-family:"Courier New",monospace;line-height:1';
+      rfBtn.style.cssText = 'background:none;border:none;color:#888;font-size:13px;cursor:pointer;padding:0 0 0 8px;margin-left:auto;font-family:"Courier New",monospace;line-height:1';
       rfBtn.addEventListener('click', function(e) { e.stopPropagation(); if (!busy) doGen(); });
       hd.appendChild(rfBtn);
 
@@ -188,7 +188,7 @@
       bd.style.cssText = 'padding:4px 0;flex:1;min-height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center';
       var st = doc.createElement('div');
       st.textContent = '$ \u70b9\u51fb\u751f\u6210\u9009\u9879';
-      st.style.cssText = 'color:#888;font-size:14px';
+      st.style.cssText = 'color:#888;font-size:13px';
       bd.appendChild(st);
       pn.appendChild(bd);
     }
@@ -286,7 +286,7 @@
       if (rf) rf.style.opacity = '0.3';
       var bd = doc.getElementById('cyoa-bd');
       if (!bd) { busy = false; return; }
-      bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">> \u601d\u8003\u4e2d <span id="cyoa-timer">1</span>s</div>';
+      bd.innerHTML = '<div style="color:#888;font-size:13px;text-align:center">> \u601d\u8003\u4e2d <span id="cyoa-timer">1</span>s</div>';
       if (genTimer) clearInterval(genTimer);
       genTimer = setInterval(function() {
         var sec = Math.ceil((Date.now() - genStartTime) / 1000);
@@ -303,7 +303,7 @@
             break;
           } catch(e) {
             if (attempt < 2) {
-              bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">> \u91cd\u8bd5\u4e2d... (' + (attempt+1) + '/3)</div>';
+              bd.innerHTML = '<div style="color:#888;font-size:13px;text-align:center">> \u91cd\u8bd5\u4e2d... (' + (attempt+1) + '/3)</div>';
               await new Promise(function(r) { setTimeout(r, 2000); });
             } else {
               throw e;
@@ -315,7 +315,7 @@
         var items = parseSuggestions(result);
         if (items.length === 0) {
           try {
-            bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">> \u91cd\u65b0\u89e3\u6790...</div>';
+            bd.innerHTML = '<div style="color:#888;font-size:13px;text-align:center">> \u91cd\u65b0\u89e3\u6790...</div>';
             var retryPrompt = '\u76f4\u63a5\u5217\u51fa10\u4e2a\u884c\u52a8\u9009\u9879\uff0c\u7528<suggestion>\u6807\u7b7e\u5305\u88f9\u6bcf\u4e2a\u9009\u9879\uff0c\u6bcf\u884c\u4e00\u4e2a\u3002\u4e0d\u8981\u8bf4\u660e\u6587\u5b57\uff0c\u4e0d\u8981\u7f16\u53f7\u3002';
             var retryResult = null;
             for (var ra = 0; ra < 2; ra++) {
@@ -325,7 +325,7 @@
           } catch(re) {}
         }
         if (items.length === 0) {
-          bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">> \u672a\u80fd\u89e3\u6790\u9009\u9879\uff0c\u8bf7\u91cd\u8bd5</div>';
+          bd.innerHTML = '<div style="color:#888;font-size:13px;text-align:center">> \u672a\u80fd\u89e3\u6790\u9009\u9879\uff0c\u8bf7\u91cd\u8bd5</div>';
           busy = false; return;
         }
         cachedItems = items;
@@ -337,7 +337,7 @@
           if (durEl) durEl.textContent = '\u23f1 ' + genDuration + 's';
         }
       } catch(e) {
-        bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">> \u751f\u6210\u5931\u8d25: ' + (e.message||'').substring(0, 30) + '</div>';
+        bd.innerHTML = '<div style="color:#888;font-size:13px;text-align:center">> \u751f\u6210\u5931\u8d25: ' + (e.message||'').substring(0, 30) + '</div>';
       } finally {
         if (genTimer) { clearInterval(genTimer); genTimer = null; }
         busy = false;
