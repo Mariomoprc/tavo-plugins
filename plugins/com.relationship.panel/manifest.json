@@ -1,8 +1,8 @@
 {
   "id": "com.relationship.panel",
   "name": "角色资料面板",
-  "version": "4.2.9",
-  "description": "角色卡资料与状态分析",
+  "version": "4.3.1",
+  "description": "情报站/角色卡/世界书。AI 剧情分析，新消息自动刷新，JSON/Markdown 双格式支持",
   "specVersion": 1,
   "minAppVersion": "0.91.0",
   "permissions": ["input", "network", "message", "generate", "variable"],
