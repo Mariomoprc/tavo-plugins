@@ -1,7 +1,7 @@
 {
   "id": "com.cyoa.choices",
   "name": "剧情选择器",
-  "version": "1.9.6",
+  "version": "1.9.7",
   "description": "为对话添加互动小说式行动选项。",
   "specVersion": 1,
   "minAppVersion": "0.91.0",
