@@ -1,18 +1,1 @@
-{
-  "id": "com.cyoa.choices",
-  "name": "剧情选择器",
-  "version": "1.9.7",
-  "description": "为对话添加互动小说式行动选项。",
-  "specVersion": 1,
-  "minAppVersion": "0.91.0",
-  "permissions": ["input", "generate", "variable", "message"],
-  "contributes": {
-    "htmlFragments": [
-      {
-        "id": "cyoa-panel",
-        "src": "cyoa.html",
-        "mount": "/chat/body/end"
-      }
-    ]
-  }
-}
+{"id":"com.cyoa.choices","name":"剧情选择器","version":"1.9.8","description":"为对话添加互动小说式行动选项。","specVersion":1,"minAppVersion":"0.91.0","permissions":["input","generate","variable","message"],"contributes":{"htmlFragments":[{"id":"cyoa-panel","src":"cyoa.html","mount":"/chat/body/end"}]}}
