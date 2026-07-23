@@ -308,6 +308,64 @@
       });
     } catch(e) { console.error('CYOA float:', e); }
 
+    // 守护：DOM 被重建时重新注入
+    var guardTimer = null;
+    var guardObs = new MutationObserver(function() {
+      if (guardTimer) clearTimeout(guardTimer);
+      guardTimer = setTimeout(function() {
+        if (!doc.getElementById('cyoa-bar') || !doc.getElementById('cyoa-pn')) {
+          reinjectUI();
+        }
+      }, 500);
+    });
+    guardObs.observe(doc.body, { childList: true, subtree: true });
+
+    function reinjectUI() {
+      var oldBar = doc.getElementById('cyoa-bar');
+      if (oldBar) oldBar.remove();
+      var oldP2 = doc.getElementById('cyoa-pn');
+      if (oldP2) oldP2.remove();
+      var oldS2 = doc.getElementById('cyoa-ss');
+      if (oldS2) oldS2.remove();
+      var s = doc.createElement('style');
+      s.id = 'cyoa-ss';
+      s.textContent = 'div#cyoa-pn{display:none;position:fixed;width:340px;max-height:500px;background:#1a1a1a;border:1px solid #333;border-radius:6px;z-index:9999999;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.5);flex-direction:column;font-family:"Courier New",monospace;color:#fff}div#cyoa-pn select{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:2px;color:#fff;font-size:14px;padding:4px 8px;font-family:"Courier New",monospace;outline:none}div#cyoa-pn select option{background:rgba(10,10,10,0.95);color:#fff}div#cyoa-pn .opt-btn{width:100%;text-align:left;background:transparent;border:none;color:#e0e0e0;font-size:14px;padding:8px 12px;cursor:pointer;font-family:"Courier New",monospace;position:relative;border-bottom:1px solid rgba(255,255,255,0.05)}div#cyoa-pn .opt-btn:last-of-type{border-bottom:none}#cyoa-bar{position:fixed;bottom:80px;left:16px;z-index:9999998;display:flex;flex-direction:column;gap:8px;cursor:grab}#cyoa-bar button{width:48px;height:48px;border-radius:50%;border:none;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);transition:transform 0.2s}#cyoa-bar button:hover{transform:scale(1.1)}#cyoa-fb{background:rgba(10,10,10,0.85);color:#fff}';
+      doc.head.appendChild(s);
+      pn = doc.createElement('div');
+      pn.id = 'cyoa-pn';
+      pn.style.display = 'none';
+      doc.body.appendChild(pn);
+      var bar = doc.createElement('div'); bar.id = 'cyoa-bar'; doc.body.appendChild(bar);
+      var fb = doc.createElement('button'); fb.id = 'cyoa-fb';
+      fb.textContent = '\ud83c\udfb2'; fb.title = 'CYOA';
+      fb.addEventListener('click', async function(e) {
+        e.stopPropagation();
+        if (pn.style.display === 'flex') { pn.style.display = 'none'; return; }
+        pn.style.display = 'flex';
+        var rp = doc.getElementById('rel-pn');
+        if (rp && rp.classList.contains('rel-open')) rp.classList.remove('rel-open');
+        showDefault();
+        var stale = false;
+        if (cachedItems && cachedItems.length > 0) {
+          try { var ms = await tavo.message.find([]); stale = (ms && ms.length !== cachedMsgCount); } catch(e) {}
+        }
+        if (cachedItems && cachedItems.length > 0 && !stale) {
+          renderOptions(cachedItems);
+          var de = doc.getElementById('cyoa-dur');
+          if (de && genDuration > 0) de.textContent = '\u23f1 ' + genDuration + 's';
+        } else if (busy) {
+          var bd = doc.getElementById('cyoa-bd');
+          if (bd) {
+            var elapsed = genStartTime ? Math.max(1, Math.ceil((Date.now() - genStartTime) / 1000)) : 1;
+            bd.innerHTML = '<div style="color:#888;font-size:14px;text-align:center">\u751f\u6210\u4e2d <span id="cyoa-timer">' + elapsed + '</span>s\uff0c\u8bf7\u7a0d\u5019</div>';
+          }
+        } else {
+          doGen();
+        }
+      });
+      bar.appendChild(fb);
+    }
+
   } catch(e) { console.error('CYOA init error:', e); }
 })();
 </script>
