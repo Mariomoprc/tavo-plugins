@@ -17,7 +17,7 @@
     doc.addEventListener('click', function(e) { if (pn.classList.contains('rel-open') && !pn.contains(e.target) && e.target.id !== 'rel-fb') { saveScroll(); pn.classList.remove('rel-open'); } });
     pn.addEventListener('click', function(e) { var t = e.target; if (t.classList && t.classList.contains('rel-name')) { e.stopPropagation(); copyName(t.getAttribute('data-name')); } });
 
-    var lastChatId = null; var lastMsgCount = 0;
+    var lastChatId = null; var lastMsgCount = 0; var _genSeq = 0;
     setInterval(async function() {
       try {
         var chat = await tavo.chat.current();
@@ -29,13 +29,16 @@
           }
           return;
         }
-        lastChatId = chat.id;
-        lastMsgCount = await tavo.message.count();
+        var seq = ++_genSeq;
+        state._cachedSummary = null;
+        state._pendingGen = {};
+        state._newMsgPending = false;
         state.chatId = chat.id; state.chars = [];
         if (chat.characters) {
           for (var i = 0; i < chat.characters.length; i++) {
             var c = chat.characters[i]; var full = null;
             try { full = await tavo.character.get(c.id); } catch(e) {}
+            if (seq !== _genSeq) return;
             var p = { id: c.id, name: c.name, avatar: c.avatar||'', description: '', personality: '', scenario: '', creator_notes: '', first_mes: '', system_prompt: '', post_history_instructions: '', alternate_greetings: [], mes_example: '' };
             if (full) {
               p.description = full.description||''; p.personality = full.personality||''; p.scenario = full.scenario||'';
@@ -46,7 +49,10 @@
             state.chars.push(p);
           }
         }
+        lastChatId = chat.id;
+        lastMsgCount = await tavo.message.count();
         startSceneSummary(state.chars);
+        if (pn.classList.contains('rel-open')) render();
       } catch(e) {}
     }, 5000);
 
@@ -404,7 +410,9 @@
       return html;
     }
 
-    async function startSceneSummary(chars, force) {
+    async function startSceneSummary(_, force) {
+      var chars = state.chars;
+      if (!chars || chars.length === 0) return;
       if (state._pendingGen['scene']) return;
       var allDone = true;
       for (var ci = 0; ci < chars.length; ci++) { if (!chars[ci]._summary) { allDone = false; break; } }
