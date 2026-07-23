@@ -25,18 +25,15 @@
     var genDuration = 0;
     var cachedItems = null;
     var cachedMsgCount = 0;
-    // 轮询检测新消息，不依赖 DOM 选择器
     var lastMsgCount = 0;
-    setInterval(function() {
+    setInterval(async function() {
       try {
-        tavo.message.find([]).then(function(ms) {
-          var count = ms ? ms.length : 0;
-          if (count > lastMsgCount && lastMsgCount > 0) {
-            cachedItems = null;
-            if (!busy) doGen(true);
-          }
-          lastMsgCount = count;
-        });
+        var count = await tavo.message.count();
+        if (count > lastMsgCount && lastMsgCount > 0) {
+          cachedItems = null;
+          if (!busy) doGen(true);
+        }
+        lastMsgCount = count;
       } catch(e) {}
     }, 3000);
 
