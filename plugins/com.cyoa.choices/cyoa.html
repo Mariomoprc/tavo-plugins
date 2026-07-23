@@ -25,9 +25,17 @@
     var genDuration = 0;
     var cachedItems = null;
     var cachedMsgCount = 0;
+    var lastChatId = null;
     var lastMsgCount = 0;
     setInterval(async function() {
       try {
+        var chat = await tavo.chat.current();
+        if (!chat) return;
+        if (chat.id !== lastChatId) {
+          lastChatId = chat.id;
+          lastMsgCount = await tavo.message.count();
+          return;
+        }
         var count = await tavo.message.count();
         if (count > lastMsgCount && lastMsgCount > 0) {
           cachedItems = null;
