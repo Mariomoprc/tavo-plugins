@@ -25,6 +25,14 @@
     var genDuration = 0;
     var cachedItems = null;
     var cachedMsgCount = 0;
+    var msgObserver = null;
+    try {
+      var msgContainer = doc.querySelector('[class*="message-list"], [class*="chat-messages"]');
+      if (msgContainer) {
+        msgObserver = new MutationObserver(function() { cachedItems = null; });
+        msgObserver.observe(msgContainer, { childList: true, subtree: true });
+      }
+    } catch(e) {}
 
     var styleConfig = {
       main:     { icon: '\u25c6', label: '\u4e3b\u7ebf\u5267\u60c5' },
@@ -130,6 +138,10 @@
       var m; while ((m = tagRe.exec(text)) !== null) { if (m[2] && m[2].trim()) items.push(m[2].trim()); }
       if (items.length >= 3) { return cleanItems(items); }
       items = [];
+      var brRe = /\u3010([\s\S]{2,30}?)\u3011/g;
+      while ((m = brRe.exec(text)) !== null) { if (m[1] && m[1].trim()) items.push(m[1].trim()); }
+      if (items.length >= 3) { return cleanItems(items); }
+      items = [];
       var jsonStr = text.match(/```(?:json)?\s*(\[[\s\S]*?\])\s*```/);
       jsonStr = jsonStr ? jsonStr[1] : '';
       if (!jsonStr) { var jsi = text.indexOf('['), jse = text.lastIndexOf(']'); if (jsi >= 0 && jse > jsi) jsonStr = text.substring(jsi, jse + 1); }
@@ -147,7 +159,7 @@
       for (var r = 0; r < lines.length; r++) { var t = lines[r].trim(); if (t && t.length >= 5 && t.length <= 30 && !skip.test(t)) items.push(t); }
       if (items.length >= 3) { return cleanItems(items); }
       items = [];
-      for (var r = 0; r < lines.length; r++) { var t = lines[r].trim(); if (t && t.length >= 2 && t.length <= 50 && !skip.test(t)) items.push(t); }
+      for (var r = 0; r < lines.length; r++) { var t = lines[r].trim(); if (t && t.length >= 8 && t.length <= 50 && !skip.test(t)) items.push(t); }
       return cleanItems(items);
     }
 
@@ -250,14 +262,18 @@
       var bar = doc.createElement('div'); bar.id = 'cyoa-bar'; doc.body.appendChild(bar);
       var fb = doc.createElement('button'); fb.id = 'cyoa-fb';
       fb.textContent = '\ud83c\udfb2'; fb.title = 'CYOA';
-      fb.addEventListener('click', function(e) {
+      fb.addEventListener('click', async function(e) {
         e.stopPropagation();
         if (pn.style.display === 'flex') { pn.style.display = 'none'; return; }
         pn.style.display = 'flex';
         var rp = doc.getElementById('rel-pn');
         if (rp && rp.classList.contains('rel-open')) rp.classList.remove('rel-open');
         showDefault();
+        var stale = false;
         if (cachedItems && cachedItems.length > 0) {
+          try { var ms = await tavo.message.find([]); stale = (ms && ms.length !== cachedMsgCount); } catch(e) {}
+        }
+        if (cachedItems && cachedItems.length > 0 && !stale) {
           renderOptions(cachedItems);
           var de = doc.getElementById('cyoa-dur');
           if (de && genDuration > 0) de.textContent = '\u23f1 ' + genDuration + 's';
