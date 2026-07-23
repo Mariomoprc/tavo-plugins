@@ -25,14 +25,20 @@
     var genDuration = 0;
     var cachedItems = null;
     var cachedMsgCount = 0;
-    var msgObserver = null;
-    try {
-      var msgContainer = doc.querySelector('[class*="message-list"], [class*="chat-messages"]');
-      if (msgContainer) {
-        msgObserver = new MutationObserver(function() { cachedItems = null; if (!busy) doGen(true); });
-        msgObserver.observe(msgContainer, { childList: true, subtree: true });
-      }
-    } catch(e) {}
+    // 轮询检测新消息，不依赖 DOM 选择器
+    var lastMsgCount = 0;
+    setInterval(function() {
+      try {
+        tavo.message.find([]).then(function(ms) {
+          var count = ms ? ms.length : 0;
+          if (count > lastMsgCount && lastMsgCount > 0) {
+            cachedItems = null;
+            if (!busy) doGen(true);
+          }
+          lastMsgCount = count;
+        });
+      } catch(e) {}
+    }, 3000);
 
     var styleConfig = {
       main:     { icon: '\u25c6', label: '\u4e3b\u7ebf\u5267\u60c5' },
