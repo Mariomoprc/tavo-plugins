@@ -15,10 +15,10 @@ Tavo 是一款手机端 AI 角色聊天应用，支持：
 
 ## 插件列表
 
-| 插件 | ID | 版本 | 说明 |
-|------|-----|------|------|
-| 🎲 剧情选择器 | `com.cyoa.choices` | [v1.9.0](https://github.com/Mariomoprc/tavo-plugins/releases/tag/com.cyoa.choices-v1.9.0) | 剧情分支选择，5 种差异化风格。浮动按钮，缓存选项 |
-| 📖 角色资料面板 | `com.relationship.panel` | [v4.2.9](https://github.com/Mariomoprc/tavo-plugins/releases/tag/com.relationship.panel-v4.2.9) | 情报站/角色卡/世界书。AI 剧情分析，新消息自动刷新 |
+| 插件 | ID | 说明 |
+|------|-----|------|
+| 🎲 剧情选择器 | `com.cyoa.choices` | 剧情分支选择，5 种差异化风格。浮动按钮，缓存选项 |
+| 📖 角色资料面板 | `com.relationship.panel` | 情报站/角色卡/世界书。AI 剧情分析，新消息自动刷新 |
 
 > 下载 `.tpg` 请到 [Releases](https://github.com/Mariomoprc/tavo-plugins/releases) 页面。
 
